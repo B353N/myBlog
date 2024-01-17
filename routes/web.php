@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('/post', function () {
     return view('post');
@@ -24,7 +24,11 @@ Route::get('/post', function () {
 
 Route::get('/about', function () {
     return view('about');
-});
+})->name('about');
+
+Route::get('/contacts', function () {
+    return view('contacts');
+})->name('contacts');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
