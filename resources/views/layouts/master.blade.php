@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My Blog</title>
+    <title>My Blog | @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="My Blog With Laravel" />
     <meta name="keywords" content="" />

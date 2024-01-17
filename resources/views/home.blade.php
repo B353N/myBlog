@@ -1,5 +1,8 @@
 @extends('layouts.master')
 
+@section('title', 'Home')
+
+
 @section('content')
 <div class="myblog-blog">
     <div class="container">
@@ -84,102 +87,13 @@
                 </div>
             </div>
 
-            <!-- SIDEBAR: start -->
-            <div class="col-md-4 animate-box">
-                <div class="sidebar">
-                    <div class="side">
-                        <h3 class="sidebar-heading">Categories</h3>
-                        <div class="block-24">
-                            <ul>
-                                <li><a href="#">Education <span>10</span></a></li>
-                                <li><a href="#">Courses <span>43</span></a></li>
-                                <li><a href="#">Fashion <span>21</span></a></li>
-                                <li><a href="#">Business <span>65</span></a></li>
-                                <li><a href="#">Marketing <span>34</span></a></li>
-                                <li><a href="#">Travel <span>45</span></a></li>
-                                <li><a href="#">Video <span>22</span></a></li>
-                                <li><a href="#">Audio <span>13</span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="side">
-                        <h3 class="sidebar-heading">Recent Blog</h3>
-                        <div class="f-blog">
-                            <a href="blog.html" class="blog-img" style="background-image: url({{ asset('images/blog-1.jpg') }});">
-                            </a>
-                            <div class="desc">
-                                <p class="admin"><span>18 April 2018</span></p>
-                                <h2><a href="blog.html">Creating Mobile Apps</a></h2>
-                                <p>Far far away, behind the word mountains</p>
-                            </div>
-                        </div>
-                        <div class="f-blog">
-                            <a href="blog.html" class="blog-img" style="background-image: url({{ asset('images/blog-2.jpg') }});">
-                            </a>
-                            <div class="desc">
-                                <p class="admin"><span>18 April 2018</span></p>
-                                <h2><a href="blog.html">Creating Mobile Apps</a></h2>
-                                <p>Far far away, behind the word mountains</p>
-                            </div>
-                        </div>
-                        <div class="f-blog">
-                            <a href="blog.html" class="blog-img" style="background-image: url({{ asset('images/blog-3.jpg') }});">
-                            </a>
-                            <div class="desc">
-                                <p class="admin"><span>18 April 2018</span></p>
-                                <h2><a href="blog.html">Creating Mobile Apps</a></h2>
-                                <p>Far far away, behind the word mountains</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="side">
-                        <h3 class="sidbar-heading">Tags</h3>
-                        <div class="block-26">
-                            <ul>
-                                <li><a href="#">code</a></li>
-                                <li><a href="#">design</a></li>
-                                <li><a href="#">typography</a></li>
-                                <li><a href="#">development</a></li>
-                                <li><a href="#">creative</a></li>
-                                <li><a href="#">codehack</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Sidebar -->
+            @include('shared.sidebar')
         </div>
     </div>
 </div>
 
-<div id="myblog-subscribe" class="subs-img" style="background-image: url({{ asset('images/img_bg_2.jpg') }});" data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 text-center myblog-heading animate-box">
-                <h2>Subscribe Newsletter</h2>
-                <p>Subscribe our newsletter and get latest update</p>
-            </div>
-        </div>
-        <div class="row animate-box">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="row">
-                    <div class="col-md-12">
-                        <form class="form-inline qbstp-header-subscribe">
-                            <div class="col-three-forth">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="email" placeholder="Enter your email">
-                                </div>
-                            </div>
-                            <div class="col-one-third">
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Subscribe Now</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Subscribe -->
+@include('shared.subscribe')
+
 @endsection
