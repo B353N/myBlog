@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Post extends Model
 {
@@ -40,5 +41,25 @@ class Post extends Model
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(related: Tag::class, table: 'post_tag', foreignPivotKey: 'post_id', relatedPivotKey: 'tag_id');
+    }
+
+    /**
+     * Relation to Comments
+     *
+     * @return HasMany
+     */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(related: Comment::class, foreignKey: 'post_id');
+    }
+
+    /**
+     * Relation to Images
+     *
+     * @return morphOne
+     */
+    public function images(): morphOne
+    {
+        return $this->morphOne(related: Image::class, name: 'imageable');
     }
 }
