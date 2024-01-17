@@ -1,5 +1,5 @@
 ;(function () {
-	
+
 	'use strict';
 
 	var isMobile = {
@@ -26,17 +26,17 @@
 	var mobileMenuOutsideClick = function() {
 
 		$(document).click(function (e) {
-	    var container = $("#colorlib-offcanvas, .js-colorlib-nav-toggle");
+	    var container = $("#myblog-offcanvas, .js-myblog-nav-toggle");
 	    if (!container.is(e.target) && container.has(e.target).length === 0) {
 
 	    	if ( $('body').hasClass('offcanvas') ) {
 
     			$('body').removeClass('offcanvas');
-    			$('.js-colorlib-nav-toggle').removeClass('active');
-				
+    			$('.js-myblog-nav-toggle').removeClass('active');
+
 	    	}
-	    
-	    	
+
+
 	    }
 		});
 
@@ -45,15 +45,15 @@
 
 	var offcanvasMenu = function() {
 
-		$('#page').prepend('<div id="colorlib-offcanvas" />');
-		$('#page').prepend('<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle colorlib-nav-white"><i></i></a>');
+		$('#page').prepend('<div id="myblog-offcanvas" />');
+		$('#page').prepend('<a href="#" class="js-myblog-nav-toggle myblog-nav-toggle myblog-nav-white"><i></i></a>');
 		var clone1 = $('.menu-1 > ul').clone();
-		$('#colorlib-offcanvas').append(clone1);
+		$('#myblog-offcanvas').append(clone1);
 		var clone2 = $('.menu-2 > ul').clone();
-		$('#colorlib-offcanvas').append(clone2);
+		$('#myblog-offcanvas').append(clone2);
 
-		$('#colorlib-offcanvas .has-dropdown').addClass('offcanvas-has-dropdown');
-		$('#colorlib-offcanvas')
+		$('#myblog-offcanvas .has-dropdown').addClass('offcanvas-has-dropdown');
+		$('#myblog-offcanvas')
 			.find('li')
 			.removeClass('has-dropdown');
 
@@ -64,14 +64,14 @@
 			$this
 				.addClass('active')
 				.find('ul')
-				.slideDown(500, 'easeOutExpo');				
+				.slideDown(500, 'easeOutExpo');
 		}).mouseleave(function(){
 
 			var $this = $(this);
 			$this
 				.removeClass('active')
 				.find('ul')
-				.slideUp(500, 'easeOutExpo');				
+				.slideUp(500, 'easeOutExpo');
 		});
 
 
@@ -80,15 +80,15 @@
 			if ( $('body').hasClass('offcanvas') ) {
 
     			$('body').removeClass('offcanvas');
-    			$('.js-colorlib-nav-toggle').removeClass('active');
-				
+    			$('.js-myblog-nav-toggle').removeClass('active');
+
 	    	}
 		});
 	};
 
 	var burgerMenu = function() {
 
-		$('body').on('click', '.js-colorlib-nav-toggle', function(event){
+		$('body').on('click', '.js-myblog-nav-toggle', function(event){
 			var $this = $(this);
 
 
@@ -102,14 +102,14 @@
 
 		});
 	};
-	
+
 
 	var contentWayPoint = function() {
 		var i = 0;
 		$('.animate-box').waypoint( function( direction ) {
 
 			if( direction === 'down' && !$(this.element).hasClass('animated-fast') ) {
-				
+
 				i++;
 
 				$(this.element).addClass('item-animate');
@@ -132,9 +132,9 @@
 							el.removeClass('item-animate');
 						},  k * 200, 'easeInOutExpo' );
 					});
-					
+
 				}, 100);
-				
+
 			}
 
 		} , { offset: '85%' } );
@@ -166,13 +166,13 @@
 	var goToTop = function() {
 
 		$('.js-gotop').on('click', function(event){
-			
+
 			event.preventDefault();
 
 			$('html, body').animate({
 				scrollTop: $('html').offset().top
 			}, 500, 'easeInOutExpo');
-			
+
 			return false;
 		});
 
@@ -186,13 +186,13 @@
 			}
 
 		});
-	
+
 	};
 
 
 	// Loading page
 	var loaderPage = function() {
-		$(".colorlib-loader").fadeOut("slow");
+		$(".myblog-loader").fadeOut("slow");
 	};
 
 	var counter = function() {
@@ -205,11 +205,11 @@
 
 
 	var counterWayPoint = function() {
-		if ($('#colorlib-counter').length > 0 ) {
-			$('#colorlib-counter').waypoint( function( direction ) {
-										
+		if ($('#myblog-counter').length > 0 ) {
+			$('#myblog-counter').waypoint( function( direction ) {
+
 				if( direction === 'down' && !$(this.element).hasClass('animated') ) {
-					setTimeout( counter , 400);					
+					setTimeout( counter , 400);
 					$(this.element).addClass('animated');
 				}
 			} , { offset: '90%' } );
@@ -217,8 +217,8 @@
 	};
 
 	var sliderMain = function() {
-		
-	  	$('#colorlib-hero .flexslider').flexslider({
+
+	  	$('#myblog-hero .flexslider').flexslider({
 			animation: "fade",
 
 			// easing: "swing",
@@ -248,7 +248,7 @@
 		if ( !isMobile.any() ) {
 			$(window).stellar({
 				horizontalScrolling: false,
-				hideDistantElements: false, 
+				hideDistantElements: false,
 				responsive: true
 
 			});
@@ -290,7 +290,7 @@
 		});
 	};
 
-	
+
 	$(function(){
 		mobileMenuOutsideClick();
 		offcanvasMenu();
