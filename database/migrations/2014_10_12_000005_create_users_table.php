@@ -11,6 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        # Check if table exists and return
+        if (Schema::hasTable('users'))
+            return;
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -19,9 +23,11 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('status')->default(1);
             $table->unsignedBigInteger('role_id')->default(1);
-            $table->foreign('role_id')->references('id')->on('roles');
             $table->rememberToken();
             $table->timestamps();
+
+            # Relationships
+            $table->foreign('role_id')->references('id')->on('roles');
         });
     }
 

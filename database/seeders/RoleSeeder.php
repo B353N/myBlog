@@ -13,25 +13,31 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        # Check if table is empty
-        if (DB::table('roles')->get()->count() == 0) {
-            DB::table('roles')->insert([
-                [
-                    'id' => 1,
-                    'name' => 'user',
-                    'created_at' => now(),
-                ],
-                [
-                    'id' => 2,
-                    'name' => 'author',
-                    'created_at' => now(),
-                ],
-                [
-                    'id' => 3,
-                    'name' => 'admin',
-                    'created_at' => now(),
-                ],
-            ]);
+        # Define roles
+        $roles = [
+            [
+                'id' => 1,
+                'name' => 'user',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 2,
+                'name' => 'author',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 3,
+                'name' => 'admin',
+                'created_at' => now(),
+            ],
+
+        ];
+
+        # Iterate the roles
+        foreach ($roles as $role) {
+
+            # Insert or update the row
+            DB::table('roles')->upsert($role, ['id'], array_keys($role));
         }
     }
 }

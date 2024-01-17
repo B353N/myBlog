@@ -6,17 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Role extends Model
+class Category extends Model
 {
     use HasFactory;
 
     /**
-     * Return the users that have this role.
+     * Relation to Posts in category
      *
      * @return HasMany
      */
-    public function users(): HasMany
+    public function posts(): HasMany
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Post::class);
     }
 }

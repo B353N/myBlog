@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        # Check if table exists and return
-        if (Schema::hasTable('roles'))
-            return;
-
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('post_tag', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('tag_id');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('post_tag');
     }
 };
