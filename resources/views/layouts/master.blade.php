@@ -45,6 +45,9 @@
     <!-- Theme style  -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
+    <!-- Custom style -->
+    @stack('custom-css')
+
     <!-- Modernizr JS -->
     <script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
     <!-- FOR IE9 below -->
@@ -92,7 +95,8 @@
 <script src="{{ asset('js/jquery.countTo.js') }}"></script>
 <!-- Main -->
 <script src="{{ asset('js/main.js') }}"></script>
-
+<!-- Custom -->
+@stack('custom-js')
 </body>
 </html>
 
