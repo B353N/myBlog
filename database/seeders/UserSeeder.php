@@ -32,6 +32,16 @@ class UserSeeder extends Seeder
 
             # Insert or update the row
             DB::table('users')->upsert($user, ['id'], array_keys($user));
+
+            # Insert user image
+            DB::table('images')->insert([
+                'imageable_id' => $user['id'],
+                'imageable_type' => 'App\Models\User',
+                'name' => $user['name'],
+                'path' => 'images/person2.jpg',
+                'extension' => 'jpg',
+                'created_at' => now()
+            ]);
         }
     }
 }

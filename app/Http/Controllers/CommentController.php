@@ -60,4 +60,43 @@ class CommentController extends Controller
             return redirect('post/' . $post->slug.'#comment_' . $post->id)->withErrors($res['message']);
         }
     }
+
+    /**
+     * Delete a comment.
+     *
+     * @param Comment $comment
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Comment $comment): \Illuminate\Http\RedirectResponse
+    {
+        # Handle the request
+        $res = [];
+
+        try {
+            # Begin Transaction
+            DB::beginTransaction();
+
+            # Delete the comment
+            $comment->delete();
+
+            # Commit Transaction
+            DB::commit();
+
+            # Prepare the success message
+            $res['message'] = 'Comment deleted successfully!';
+
+            # Return the success message
+            return redirect()->back()->with('success', $res['message']);
+
+        } catch (\Exception $e) {
+            # Rollback Transaction
+            DB::rollBack();
+
+            # Prepare the error message
+            $res['message'] = $e->getMessage();
+
+            # Return the error message
+            return redirect()->back()->withErrors($res['message']);
+        }
+    }
 }

@@ -32,4 +32,34 @@ class PostController extends Controller
 
         return view('post', compact('post', 'recent_posts', 'categories', 'tags', 'comments'));
     }
+
+    /**
+     * Delete the post.
+     *
+     * @param Post $post
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Post $post): \Illuminate\Http\RedirectResponse
+    {
+        # Handle the request
+        $res = [];
+
+        try {
+            # Delete the post
+            $post->delete();
+
+            # Prepare the success message
+            $res['message'] = 'Post deleted successfully!';
+
+            # Return the success message
+            return redirect('/')->with('success', $res['message']);
+
+        } catch (\Exception $e) {
+            # Prepare the error message
+            $res['message'] = $e->getMessage();
+
+            # Return the error message
+            return redirect('/')->withErrors($res['message']);
+        }
+    }
 }

@@ -9,17 +9,6 @@
                 <div class="col-md-10 text-right menu-1">
                     <ul>
                         <li><a href="{{ route('home') }}">Home</a></li>
-                        <li class="has-dropdown">
-                            <a href="/categories">Categories</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Programming</a></li>
-                                <li><a href="#">Games</a></li>
-                                <li><a href="#">Soft Skills</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="{{ route('about') }}">About</a></li>
-                        <li><a href="{{ route('contacts') }}">Contact</a></li>
-
                         @guest
                             <li class="btn-cta"><a href="{{ route('login') }}"><span>Sign in</span></a></li>
                         @endguest

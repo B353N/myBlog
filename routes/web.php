@@ -21,16 +21,13 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 # Route For single post
 Route::get('/post/{post:slug}', [PostController::class, 'show'])->name('post.show');
+# Delete Post
+Route::delete('/post/{post:slug}', [PostController::class, 'destroy'])->name('post.delete');
+
 # Add comment on post
 Route::post('/post/{post:slug}/comment', [CommentController::class, 'store'])->name('post.comment');
-
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
-
-Route::get('/contacts', function () {
-    return view('contacts');
-})->name('contacts');
+# Delete Comment
+Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.delete');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
