@@ -11,6 +11,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @method static inRandomOrder()
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -77,11 +80,11 @@ class User extends Authenticatable
     }
 
     /**
-     * Relation to Images
+     * Relation to Image
      *
      * @return morphOne
      */
-    public function images(): morphOne
+    public function image(): morphOne
     {
         return $this->morphOne(related: Image::class, name: 'imageable');
     }

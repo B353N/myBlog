@@ -9,9 +9,26 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
+/**
+ * @method static inRandomOrder()
+ */
 class Post extends Model
 {
     use HasFactory;
+
+    /**
+     * Fillable fields
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title',
+        'slug',
+        'excerpt',
+        'body',
+        'user_id',
+        'category_id',
+    ];
 
     /**
      * Relation to Author of post
@@ -58,7 +75,7 @@ class Post extends Model
      *
      * @return morphOne
      */
-    public function images(): morphOne
+    public function image(): morphOne
     {
         return $this->morphOne(related: Image::class, name: 'imageable');
     }
