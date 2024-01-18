@@ -10,14 +10,14 @@
             <div class="col-md-8 posts-col">
                 @foreach($posts as $post)
                     <div class="block-21 d-flex animate-box post">
-                        <a href="#" class="blog-img" style="background-image: url({{ asset('storage/' . $post->image->path) }});"></a>
+                        <a href="{{ route('post.show', $post->slug) }}" class="blog-img" style="background-image: url({{ asset('storage/' . $post->image->path) }});"></a>
                         <div class="text">
-                            <h3 class="heading"><a href="#">{{ $post->title }}</a></h3>
+                            <h3 class="heading"><a href="{{ route('post.show', $post->slug) }}">{{ $post->title }}</a></h3>
                             <p class="excerpt">{{ $post->excerpt }}</p>
                             <div class="meta">
                                 <div><a class="date" href="#"><span class="icon-calendar"></span> {{ $post->created_at->diffForHumans() }}</a></div>
                                 <div><a class="author" href="#"><span class="icon-user2"></span> {{ $post->author->name }}</a></div>
-                                <div class="comments-count"><a href="#"><span class="icon-chat"></span> {{ $post->comments_count}}</a></div>
+                                <div class="comments-count"><a href="{{ route('post.show', $post->slug) }}#postComments"><span class="icon-chat"></span> {{ $post->comments_count}}</a></div>
                             </div>
                         </div>
                     </div>

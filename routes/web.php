@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,12 +16,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+# Home Route
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/post', function () {
-    return view('post');
-});
+# Route For single post
+Route::get('/post/{post:slug}', [PostController::class, 'show'])->name('post.show');
+# Add comment on post
+Route::post('/post/{post:slug}/comment', [CommentController::class, 'store'])->name('post.comment');
 
 Route::get('/about', function () {
     return view('about');
