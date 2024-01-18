@@ -16,10 +16,19 @@ class ImageFactory extends Factory
      */
     public function definition(): array
     {
+        # Images Array
+        $fake_images = [
+            'img_bg_1.jpg',
+            'img_bg_2.jpg',
+            'img_bg_3.jpg',
+            'img_bg_4.jpg',
+            'img_bg_5.jpg',
+        ];
+
         # Generate Image Name
         $name = $this->faker->word();
         # Generate Image Path
-        $path = 'public/images/' . $name . '.jpg';
+        $path = 'images/' . $this->faker->randomElement($fake_images);
 
         return [
             'name' => $name,
