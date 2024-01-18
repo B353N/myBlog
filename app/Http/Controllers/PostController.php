@@ -44,6 +44,15 @@ class PostController extends Controller
         # Handle the request
         $res = [];
 
+        # Check if the user is authorized to delete the post
+        if (auth()->user()->role->name !== 'admin') {
+            # Prepare the error message
+            $res['message'] = 'You are not authorized to delete this post!';
+
+            # Return the error message
+            return redirect('/')->withErrors($res['message']);
+        }
+
         try {
             # Delete the post
             $post->delete();

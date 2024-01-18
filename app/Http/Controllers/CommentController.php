@@ -72,6 +72,15 @@ class CommentController extends Controller
         # Handle the request
         $res = [];
 
+        # Check if the user is authorized to delete the comment
+        if (auth()->user()->role->name !== 'admin' || auth()->user()->id !== $comment->user_id) {
+            # Prepare the error message
+            $res['message'] = 'You are not authorized to delete this comment!';
+
+            # Return the error message
+            return redirect()->back()->withErrors($res['message']);
+        }
+
         try {
             # Begin Transaction
             DB::beginTransaction();
