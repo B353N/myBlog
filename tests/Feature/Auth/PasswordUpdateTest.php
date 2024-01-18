@@ -11,6 +11,14 @@ class PasswordUpdateTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        // Run the DatabaseSeeder...
+        $this->seed();
+    }
+
     public function test_password_can_be_updated(): void
     {
         $user = User::factory()->create();

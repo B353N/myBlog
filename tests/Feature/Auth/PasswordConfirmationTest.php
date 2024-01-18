@@ -10,6 +10,14 @@ class PasswordConfirmationTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        // Run the DatabaseSeeder...
+        $this->seed();
+    }
+
     public function test_confirm_password_screen_can_be_rendered(): void
     {
         $user = User::factory()->create();

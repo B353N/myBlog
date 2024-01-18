@@ -11,6 +11,14 @@ class AuthenticationTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        // Run the DatabaseSeeder...
+        $this->seed();
+    }
+
     public function test_login_screen_can_be_rendered(): void
     {
         $response = $this->get('/login');
