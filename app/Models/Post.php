@@ -68,7 +68,7 @@ class Post extends Model
      */
     public function comments(): HasMany
     {
-        return $this->hasMany(related: Comment::class, foreignKey: 'post_id');
+        return $this->hasMany(related: Comment::class, foreignKey: 'commentable_id');
     }
 
     /**

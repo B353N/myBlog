@@ -26,6 +26,8 @@ Route::delete('/post/{post:slug}', [PostController::class, 'destroy'])->name('po
 
 # Add comment on post
 Route::post('/post/{post:slug}/comment', [CommentController::class, 'store'])->name('post.comment');
+# Reply to comment
+Route::post('/comment/{comment}/reply', [CommentController::class, 'storeReply'])->name('comment.reply');
 # Delete Comment
 Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.delete');
 
