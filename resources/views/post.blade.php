@@ -67,8 +67,6 @@
                                                 <form id="comment-form" action="{{ route('comment.reply', $comment) }}" method="post">
                                                     @csrf
                                                     <div class="row form-group">
-                                                        <input type="hidden" name="post" value="{{$comment->post->id}}">
-                                                        <input type="hidden" name="parent_id" value="{{$comment->id}}">
                                                         <div class="col-md-12">
                                                             <textarea name="comment" id="comment" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
                                                         </div>

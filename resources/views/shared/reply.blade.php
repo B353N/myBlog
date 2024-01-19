@@ -31,8 +31,6 @@
                     <form id="comment-form" action="{{ route('comment.reply', $reply) }}" method="post">
                         @csrf
                         <div class="row form-group">
-                            <input type="hidden" name="post" value="{{$reply->post->id}}">
-                            <input type="hidden" name="parent_id" value="{{$reply->id}}">
                             <div class="col-md-12">
                                 <textarea name="comment" id="comment" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
                             </div>
