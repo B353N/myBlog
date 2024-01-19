@@ -35,9 +35,7 @@ class DatabaseSeeder extends Seeder
         Comment::factory(500)->create();
 
         # Create 100 Reply on comments
-        Comment::factory(100)->create()->each(function ($comment){
-
-        });
+        Comment::factory(100)->create();
 
         # Create 100 Tags
         Tag::factory(100)->create();
