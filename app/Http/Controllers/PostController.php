@@ -19,7 +19,7 @@ class PostController extends Controller
     public function show(Post $post): View
     {
         # Get post comments
-        $comments = $post->comments()->with('user')->get();
+        $comments = $post->comments()->where('parent_id', null)->with('user')->with('replies')->get();
 
         # Get recent posts
         $recent_posts = Post::latest()->take(3)->get();

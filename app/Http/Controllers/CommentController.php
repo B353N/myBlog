@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Post;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -37,7 +38,8 @@ class CommentController extends Controller
             $comment = new Comment();
             $comment->the_comment = $request->comment;
             $comment->user_id = auth()->id();
-            $comment->post_id = $post->id;
+            $comment->commentable_id = $post->id;
+            $comment->commentable_type = 'App\Models\Post';
             $comment->save();
 
             # Commit Transaction
@@ -59,6 +61,61 @@ class CommentController extends Controller
             # Return the error message
             return redirect('post/' . $post->slug.'#comment_' . $post->id)->withErrors($res['message']);
         }
+    }
+
+    /**
+     * Reply on comment
+     *
+     * @param Comment $comment
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function storeReply(Comment $comment, Request $request): \Illuminate\Http\RedirectResponse
+    {
+
+        # Get Comment
+        $parentComment = Comment::findOrFail($comment->id);
+
+        $request->validate([
+            'comment' => 'required'
+        ]);
+
+        # Handle respond messages
+        $res = [];
+
+        try {
+            # Begin Transaction
+            DB::beginTransaction();
+
+            # Create a new comment
+            $comment = new Comment();
+            $comment->the_comment = $request->comment;
+            $comment->user_id = auth()->id();
+            $comment->commentable_id = $parentComment->commentable_id;
+            $comment->parent_id = $parentComment->id;
+            $comment->commentable_type = 'App\Models\Post';
+            $comment->save();
+
+            # Commit Transaction
+            DB::commit();
+
+            # Prepare the success message
+            $res['message'] = 'Comment added successfully!';
+
+            # Return the success message
+            return redirect('post/' . $parentComment->post->slug.'#comment_' . $comment->id)->with('success', $res['message']);
+
+        } catch (\Exception $e) {
+            # Rollback Transaction
+            DB::rollBack();
+
+            # Prepare the error message
+            $res['message'] = $e->getMessage();
+
+            # Return the error message
+            return redirect('post/' . $parentComment->slug.'#comment_' . $comment->id)->withErrors($res['message']);
+        }
+
     }
 
     /**
